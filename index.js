@@ -4,12 +4,16 @@ const axios = require("axios")
 
 const app = express();
 const PORT = 5000;
-const corsOption = {
-  origin:[
-    "https://zipgen.vercel.app"
+const corsOptions = {
+  origin: [
+    "https://zipgen.vercel.app",
+    "http://localhost:3000", 
   ],
-  creadentials:true
-}
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+};
+
 app.use(cors(corsOption));
 app.use(express.json());
 
