@@ -75,6 +75,10 @@ app.post("/api/voice", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("hello from express backend hosted on vercel")
-})
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+  res.send("Hello from Express on Vercel!");
+});
+
+app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
+
+
+export default app;
