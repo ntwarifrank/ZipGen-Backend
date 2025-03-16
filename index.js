@@ -4,8 +4,6 @@ const axios = require("axios")
 
 const app = express();
 const PORT = 5000;
-app.use(express.json());
-
 const corsOption = {
   origin:[
     "https://zipgen.vercel.app"
@@ -13,6 +11,7 @@ const corsOption = {
   creadentials:true
 }
 app.use(cors(corsOption));
+app.use(express.json());
 
 const GEMINI_API_KEY = "AIzaSyCqxgvY-k6yIYLb7cXqvR0M3Gr08BNQO2s"; // Replace with your actual API key
 
