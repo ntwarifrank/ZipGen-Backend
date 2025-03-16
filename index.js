@@ -20,6 +20,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+if (!process.env.GEMINI_API_KEY) {
+  console.error("GEMINI_API_KEY not found in .env file");
+  process.exit(1); // Stop the app if the key is missing
+}
+
+
 app.post('/api/gemini', async (req, res) => {
   try {
       const { text } = req.body;
