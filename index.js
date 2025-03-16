@@ -1,8 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const axios = require("axios") 
+const axios = require("axios")
 
 const app = express();
+const PORT = 5000;
 app.use(express.json());
 
 const corsOption = {
@@ -70,5 +71,7 @@ app.post("/api/voice", async (req, res) => {
   }
 });
 
-const PORT = 5000;
+app.get("/", (req, res) => {
+  res.send("hello from express backend hosted on vercel")
+})
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
