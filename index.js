@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const axios = require("axios");
 const dotenv = require("dotenv");
-const serverless = require('serverless-http');
 
 const app = express();
 dotenv.config();
@@ -76,5 +75,7 @@ app.get("/", (req, res) => {
   res.send("Hello from Express on Vercel!");
 });
 
-// Use serverless-http to wrap the Express app
-module.exports.handler = serverless(app);
+app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
+
+
+export default app;
