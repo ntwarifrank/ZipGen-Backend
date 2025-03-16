@@ -1,8 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require("axios")
+const dotenv = require("dotenv")
 
 const app = express();
+dotenv.config();
 const PORT = 5000;
 const corsOptions = {
   origin: [
@@ -14,17 +16,15 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
 };
 
-app.use(cors(corsOption));
+app.use(cors(corsOptions));
 app.use(express.json());
-
-const GEMINI_API_KEY = "AIzaSyCqxgvY-k6yIYLb7cXqvR0M3Gr08BNQO2s"; // Replace with your actual API key
 
 app.post('/api/gemini', async (req, res) => {
     try {
         const { text } = req.body;
 
         const response = await axios.post(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
             {
                 contents: [{ parts: [{ text }] }]
             },
@@ -53,7 +53,7 @@ app.post("/api/voice", async (req, res) => {
   try {
     // Send the speech input to Gemini API for generating a response
     const geminiResponse = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
       {
         contents: [{ parts: [{ text: userSpeech }] }]
       },
